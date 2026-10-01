@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Fictional Retail Checkout</title></head>
+<body><h1>Fictional Retail Checkout</h1><p>Test fixture: notebook, 1,000 cents. No real payments.</p>
+<label for="quantity">Quantity</label><input id="quantity" value="1">
+<label for="discount">Discount in cents</label><input id="discount" value="0">
+<label for="payment">Simulated payment result</label><select id="payment"><option value="approve">Approve</option><option value="decline">Decline</option></select>
+<button id="checkout">Checkout</button><p id="result" role="status"></p>
+<script>
+document.querySelector('#checkout').addEventListener('click', () => {
+  const quantityText = document.querySelector('#quantity').value;
+  const discountText = document.querySelector('#discount').value;
+  const q = Number(quantityText), discount = Number(discountText);
+  const result = document.querySelector('#result');
+  result.textContent = '';
+  if (!/^\d+$/.test(quantityText) || !Number.isInteger(q) || q < 1 || q > 99) {
+    result.textContent = 'Quantity must be an integer from 1 to 99'; return;
+  }
+  if (!/^\d+$/.test(discountText) || !Number.isInteger(discount) || discount < 0 || discount > q * 1000) {
+    result.textContent = 'Invalid discount'; return;
+  }
+  if (document.querySelector('#payment').value === 'decline') {
+    result.textContent = 'Payment declined; no receipt issued'; return;
+  }
+  const taxable = q * 1000 - discount;
+  const total = taxable + Math.floor((taxable * 600 + 5000) / 10000);
+  setTimeout(() => { result.textContent = `Approved: ${total} cents`; }, 80);
+});
+</script></body></html>
