@@ -1,0 +1,14 @@
+.env
+.env.*
+!.env.example
+target/
+reports/
+test-results/
+playwright-report/
+node_modules/
+__pycache__/
+.venv/
+*.db
+*.log
+.idea/
+.vscode/
