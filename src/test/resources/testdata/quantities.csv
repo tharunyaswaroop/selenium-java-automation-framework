@@ -1,0 +1,8 @@
+quantity,expected
+1,Approved: 1060 cents
+99,Approved: 104940 cents
+0,Quantity must be an integer from 1 to 99
+100,Quantity must be an integer from 1 to 99
+-1,Quantity must be an integer from 1 to 99
+1.5,Quantity must be an integer from 1 to 99
+abc,Quantity must be an integer from 1 to 99
